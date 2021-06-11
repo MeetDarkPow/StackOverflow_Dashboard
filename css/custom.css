@@ -88,19 +88,27 @@
   box-shadow: 1px 1px 1px rgba(0,0,0,.32),0 2px 2px rgba(0,0,0,.15);
 }
 
-#contributing-blogs .inner {
+#Questions .inner {
+  color: #ba0909;
+}
+
+#Answers .inner {
   color: #2780e3;
 }
 
-#years-of-blogging .inner {
+#Comments .inner {
   color: #2780e3;
 }
 
-#twitter-followers .inner {
+#Page-Views .inner {
+  color: #ba0909;
+}
+
+#Likes .inner {
   color: #2780e3;
 }
 
-#facebook-likes .inner {
+#Users .inner {
   color: #2780e3;
 }
 
