@@ -23,9 +23,8 @@ library(lubridate)
 library(echarts4r)
 library(tidyverse)
 library(DT)
-library(jsonlite)
 options(DT.options = list(scrollY="250px",scrollX="50px", pageLength = 10, autoWidth = TRUE))
-json_file <- fromJSON("stackOverflow_summary.json")
+source("global.R")
 ```
 
 Sidebar {.sidebar data-width=200}
@@ -45,20 +44,20 @@ Row
 
 ```{r}
 
-valueBox(json_file[["summary"]][["qcount"]], icon = "fa-question-circle", color = "#435f9c")
+valueBox(questions_count, icon = "fa-question-circle", color = "#435f9c")
 
 ```
 
 ### Answers Provided
 
 ```{r}
-valueBox(json_file[["summary"]][["acount"]], icon = "fa-check-square", color = "#0586c4")
+valueBox(answers_count, icon = "fa-check-square", color = "#0586c4")
 ```
 
 ### Comments
 
 ```{r}
-valueBox(json_file[["summary"]][["ccount"]], icon = "fa-comments", color = "#435f9c")
+valueBox(comment_count, icon = "fa-comments", color = "#435f9c")
 ```
 
 Row {data-height=400}
@@ -69,7 +68,7 @@ Row {data-height=400}
 ```{r}
 
 mycolor <- c("#4ca0c6","#34495E","#BDC3C7","#003636","#a9a9a9", "#91c8c8")
-stdf <- as.data.frame(json_file[["overall_count"]])
+
 stdf %>% 
   filter(Year !=2008) %>%
   group_by(Year) %>% 
@@ -110,19 +109,19 @@ Row
 ### Page Views
 
 ```{r}
-valueBox(json_file[["summary"]][["pvcount"]], icon = "fa-eye", color = "#0586c4")
+valueBox(pgviews_count, icon = "fa-eye", color = "#0586c4")
 ```
 
 ### Likes
 
 ```{r}
-valueBox(json_file[["summary"]][["lcount"]], icon = "fa-thumbs-up", color = "#435f9c")
+valueBox(likes_count, icon = "fa-thumbs-up", color = "#435f9c")
 ```
 
 ### Users
 
 ```{r}
-valueBox(json_file[["summary"]][["ucount"]], icon = "fa-users", color = "#0586c4")
+valueBox(users_count, icon = "fa-users", color = "#0586c4")
 ```
 
 Row {data-height=400}
@@ -132,7 +131,6 @@ Row {data-height=400}
 
 ```{r}
 mycolor <- c("#4ca0c6","#34495E","#BDC3C7","#003636","#a9a9a9", "#91c8c8")
-yearly_count_qac <- as.data.frame(json_file[["yearly_qaccount"]])
 rownames(yearly_count_qac) <- yearly_count_qac$Year
   yearly_count_qac %>% 
     mutate(
@@ -175,7 +173,6 @@ Row {data-height=600}
 ### Top 20 Tags
 
 ```{r}
-tag_df <- as.data.frame(json_file[["top20_tags"]])
 datatable(tag_df, filter = "top",
           extensions = c(
             "Buttons",
@@ -205,7 +202,6 @@ datatable(tag_df, filter = "top",
 
 ```{r}
 mycolor <- c("#0586c4","#003636","#a9a9a9", "#91c8c8")
-yearly_count_views <- as.data.frame(json_file[["yearly_vcount"]])
 rownames(yearly_count_views) <- yearly_count_views$Year  
   yearly_count_views %>%
     mutate(
@@ -246,7 +242,6 @@ Row {data-height=600}
 ### Top 50 Questions - Page Views past 30 days
 
 ```{r}
-recent_top_ques <- as.data.frame(json_file[["top20_rec_q"]])
 datatable(recent_top_ques, filter = "top",
           extensions = c(
             "Buttons",
@@ -277,7 +272,6 @@ Row {data-height=600}
 ### Top 50 Questions - Page Views per year
 
 ```{r}
-year_top_ques <- as.data.frame(json_file[["yearly_top50ques"]])
 datatable(year_top_ques, filter = "top",
           extensions = c(
             "Buttons",
