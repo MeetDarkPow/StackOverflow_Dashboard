@@ -63,6 +63,7 @@
   font-size: 60px;
   top: 20px;
   transition: all .3s linear;
+  color: #FFFFFF;
 }
 
 .value-box:hover .icon > i {
@@ -89,28 +90,28 @@
 }
 
 #Questions .inner {
-  color: #ba0909;
-}
+color: #2780e3;
+  }
 
 #Answers .inner {
-  color: #2780e3;
-}
+color: #2780e3;
+  }
 
 #Comments .inner {
-  color: #2780e3;
-}
+color: #2780e3;
+  }
 
 #Page-Views .inner {
-  color: #ba0909;
-}
+color: #2780e3;
+  }
 
 #Likes .inner {
-  color: #2780e3;
-}
+color: #2780e3;
+  }
 
 #Users .inner {
-  color: #2780e3;
-}
+color: #2780e3;
+  }
 
 .navlink:hover {
   text-decoration: none;
